@@ -1,0 +1,14 @@
+[package]
+name = "systemd-spawn"
+version = "1.0.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "4.5.11", features = ["derive"] }
+color-eyre = "0.6.3"
+tokio = { version = "1.39.2", features = ["rt"] }
+tracing = "0.1.40"
+tracing-error = "0.2.0"
+tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
+zbus = { version = "4.4.0", features = ["tokio"] }
+zbus_systemd = { version = "0.25600.0", features = ["systemd1"] }
