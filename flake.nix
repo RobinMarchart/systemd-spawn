@@ -57,7 +57,7 @@
         systemd-spawn = pkgs.writeShellApplication {
           name = "systemd-spawn";
           runtimeInputs = with pkgs; [ systemd ];
-          text = "exec \"${systemd-spawn_unwrapped}/bin/shots\"";
+          text = "exec \"${systemd-spawn_unwrapped}/bin/systemd-spawn\"";
         };
       in
       {
