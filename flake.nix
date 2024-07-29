@@ -43,8 +43,6 @@
         commonArgs = {
           strictDeps = true;
           inherit src;
-          nativeBuildInputs = with pkgs; [ ];
-          buildInputs = with pkgs; [ ];
         };
 
         # Build *just* the cargo dependencies, so we can reuse
@@ -56,7 +54,6 @@
         systemd-spawn_unwrapped = craneLib.buildPackage (commonArgs // { inherit cargoArtifacts; });
         systemd-spawn = pkgs.writeShellApplication {
           name = "systemd-spawn";
-          runtimeInputs = with pkgs; [ systemd ];
           text = "exec \"${systemd-spawn_unwrapped}/bin/systemd-spawn\"";
         };
       in
@@ -102,11 +99,7 @@
         apps.default = flake-utils.lib.mkApp { drv = systemd-spawn; };
 
         devShells.default = craneLib.devShell {
-          # Inherit inputs from checks.
            checks = self.checks.${system};
-
-          # Extra inputs can be added here; cargo and rustc are provided by default.
-          packages = with pkgs; [ systemd ];
         };
       }
     );
