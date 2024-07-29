@@ -11,7 +11,15 @@ struct Args {
     name: String,
 }
 
+fn print_args(){
+    println!("Arguments:");
+    for (i,var) in std::env::args().enumerate(){
+        println!("{i}: '{var}'");
+    }
+}
+
 fn main() -> color_eyre::Result<()> {
+    print_args();
     color_eyre::install().expect("installing color eyre format handler");
     let format = tracing_subscriber::fmt::format().compact();
     let filter = tracing_subscriber::EnvFilter::builder()
